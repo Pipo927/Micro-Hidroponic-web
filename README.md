@@ -68,7 +68,7 @@ The main template was created with WordPress and the content of each page was:
 ## Project Status
 
 Project is: Complete.
-* If you want to have a full documentation about this project just click [Here](FilipeMartins_RelatorioFinal.docx).
+* If you want to have a full documentation about this project just click [Here](FilipeMartins_RelatorioFinal.pdf).
 The all project is in Portuguese (my main language), any question be free to concact me.
 
 
