@@ -12,7 +12,7 @@
 
 
 ## General Information
-- Create a small hydroponics greenhouse with web intercation
+- Create a small hydroponics greenhouse with web interaction.
 - Create small server on Raspberry Pi
 - Interact Python, C and DB
 - Development of webpage (backend and frontend)
@@ -41,7 +41,7 @@
 
 
 ## Usage
-this project was developed in 4 parts.
+This project was developed in 4 parts.
 
 #### First Arduino:
 Made to comunicate with RPI(using serial port and JSON),read the sensors and give information to the motors .
