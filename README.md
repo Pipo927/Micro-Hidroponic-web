@@ -33,11 +33,11 @@
 
 <div align="center">
 
-![screenshot1](./img/Web.jpg)
+![screenshot1](/img/Web.jpg)
 
-![screenshot2](./img/DB.jpg)
+![screenshot2](/img/DB.jpg)
 
-![screenshot2](./img/shell.jpg)
+![screenshot2](/img/shell.jpg)
 
 </div>
 
