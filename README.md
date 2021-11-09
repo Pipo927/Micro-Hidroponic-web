@@ -52,7 +52,7 @@ Made to comunicate with RPI(using serial port and JSON),read the sensors and giv
 
 #### Second Python:
 Manager of the all system. Interaction with DB and Arduino.
-[Python](Gestor_Final.ino)
+[Python](https://github.com/Pipo927/Micro-Hidroponic/blob/main/Gestor_Final.inoGestor_Final.ino)
 
 #### Third RPI CONFIG:
 Here you can find a .img of the RPI fully configurated.
