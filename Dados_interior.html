@@ -1,0 +1,139 @@
+<style>
+h1 {font-size:30px;color:#00cc00;text-align:center;font-weight:bold;}
+h2 {font-size:20px;color:#009900;text-align:center}
+h3 {font-size:18px;color:#000000;text-align:center;font-weight:bold;}
+p1 {color:black;}
+p2 {font-size:20px;color:#000000;text-align:left;}
+p3 {font-size:18px;color:#000000;text-align:left;font-weight:bold;}
+.h3 {font-size:18px;color:#000000;text-align:center;font-weight:bold;}
+.p3 {font-size:18px;color:#000000;text-align:left;font-weight:bold;}
+
+</style>
+
+
+<div style="width:100%;padding:0 0pt 0 0pt;float:center;">
+
+<h1>Dados Atuais Sobre o Interior da Estufa</h1>
+
+</br>
+<div style="width:33%;padding:0 0 0 0;float:left;text-align:center">
+<h2>Temperatura</h2>
+<p2><?php global $wpdb; $myresult = $wpdb->get_row("SELECT * FROM `INPUT`ORDER BY id DESC LIMIT 1", ARRAY_N);if ($myresult){echo "$myresult[4]ºC";}else {echo "Insira uma planta";}?> </p>
+</div>
+
+
+
+
+<div style="width:33%;padding:0 0 0 0pt;float:left;text-align:center">
+<h2>Tempo para Fim do Crescimento</h2>
+
+
+<div id="clockdiv">
+  <div>
+<p2>
+    <span class="days"></span><span class="jdays"></span><span class="hours"></span><span class="colon"></span><span class="minutes"></span><span class="colon"></span><span class="seconds"></span>
+</p2>
+
+
+ </div>
+</div>
+<p id="demo"></p>
+
+<script type="text/javascript">
+
+
+// Set the date we're counting down to
+var countDownDate = new Date("<?php
+global $wpdb;
+$date1 = $wpdb->get_row("SELECT * FROM OUTPUT WHERE id=1", ARRAY_N);
+$aux1=$date1[3];
+$final = $wpdb->get_row("SELECT * FROM OUTPUT WHERE id=1", ARRAY_N);
+$aux2=$final[6];
+$aux3= $aux2 ." days";
+$endtime=date_create($aux1);
+date_add($endtime,date_interval_create_from_date_string($aux3));
+if ($date1 == NULL)
+{echo "123";}
+else
+{echo date_format($endtime,"Y-m-d H:m:s");}
+?>").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+
+    document.getElementById("demo").innerHTML = "Pronto para Colheita";
+  }
+
+}, 1000);
+
+</script>
+</div>
+
+
+<div style="width:33%;padding:0 0 0 0;float:right;text-align:center">
+<h2>Luminosidade</h2>
+<p2><?php global $wpdb; $myresult = $wpdb->get_row("SELECT * FROM `INPUT`ORDER BY id DESC LIMIT 1", ARRAY_N);if ($myresult){echo "$myresult[3]lux";}else {echo "Insira uma planta";}?></p>
+</div>
+
+</br>
+</br>
+</br>
+</br>
+</br>
+<div style="width:40%;padding:0 0 0 0;float:left;text-align:center">
+<h2>EC</h2>
+<p2><?php global $wpdb; $myresult = $wpdb->get_row("SELECT * FROM `INPUT`ORDER BY id DESC LIMIT 1", ARRAY_N);if ($myresult){echo "$myresult[1]mS/cm";}else {echo "Insira uma planta";}?></p>
+</div>
+
+<div style="width:40%;padding:0 0 0 20pt;float:right;text-align:center">
+<h2>pH</h2>
+<p2><?php global $wpdb; $myresult = $wpdb->get_row("SELECT * FROM `INPUT`ORDER BY id DESC LIMIT 1", ARRAY_N);if ($myresult){echo "$myresult[2]";}else {echo "Insira uma planta";}?></p>
+</div>
+
+
+</br>
+</br>
+</br>
+<div style="width:100%;padding:0 0 0 0;float:right;text-align:center">
+
+<a href='<?php echo admin_url( '123.php' ); ?>'><h2>Lista Completa de Medições</h2></a>
+</div>
+
+<div style="width:100%;padding:0 0 0 0;float:right;text-align:center">
+</br>
+<h2>Colher Plantação</h2>
+</br>
+<form method = "Post">
+<button type="submit" name="remove" onclick="return confirm('Tem a certeza?');" style=" background-color:  #4CB62C; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Colher</button>
+<?php
+    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['remove']))
+    {
+     global $wpdb;
+     $wpdb->update('OUTPUT', array('EC' =>'R'), array('id'=>1), array('%s'));
+    }
+
+?>
+</form>
+</div>
+</div>
+ 

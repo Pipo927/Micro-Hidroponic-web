@@ -1,0 +1,208 @@
+<head>
+<style>
+h1 {font-size:50px;color:#00cc00;text-align:center;font-weight:bold;}
+h2 {font-size:20px;color:#009900;text-align:center}
+h3 {font-size:18px;color:#000000;text-align:center;font-weight:bold;}
+p1 {color:black;}
+p2 {font-size:20px;color:#000000;text-align:left;}
+p3 {font-size:25px;color:#000000;text-align:left;font-weight:bold;}
+.h3 {font-size:18px;color:#000000;text-align:center;font-weight:bold;}
+.p3 {font-size:18px;color:#000000;text-align:left;font-weight:bold;}
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 50%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #4CB62C;
+  border-radius: 4px;
+  border: 0px solid #8A8A8A;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #828282;
+  border: 1px solid #8A8A8A;
+  height: 24px;
+  width: 35px;
+  border-radius: 6px;
+  background: #DADADA;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7.5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #4CB62C;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #4CB62C;
+  border-radius: 4px;
+  border: 0px solid #8A8A8A;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #828282;
+  border: 1px solid #8A8A8A;
+  height: 24px;
+  width: 35px;
+  border-radius: 6px;
+  background: #DADADA;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #4CB62C;
+  border: 0px solid #8A8A8A;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #4CB62C;
+  border: 0px solid #8A8A8A;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #828282;
+  border: 1px solid #8A8A8A;
+  height: 24px;
+  width: 35px;
+  border-radius: 6px;
+  background: #DADADA;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #4CB62C;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #4CB62C;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<div style="width:45%;padding:0 10pt 0 0;float:left;text-align:center; ">
+<h1> EC </h1>
+</br>
+<form action="" method="Post" >
+<input type="number" id="EC" min="0" max="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="EC" size="10" placeholder="EC" step=".1"/> 
+<button type="submit" id="change1" name="change1"  value="" style="cursor:pointer; background-color:white; border:none"><img src="https://dabuttonfactory.com/button.png?t=INSERIR&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=25&bgt=unicolored&bgc=46c90f&be=1&bs=1&bc=569"></button>
+<?php
+global $wpdb;
+$ready1 = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_N);
+if(isset($_POST['change1']))
+{
+ if($ready1==NULL)
+ {
+  echo "Insira uma planta";
+ }
+ else
+ {
+  $EC= $_POST["EC"];
+  if($ready1[4]>$EC)
+   {
+    echo " Insira um valor entre $ready1[4] e 3";
+   }
+   else
+   {
+    $wpdb->update('OUTPUT', array('EC' =>$EC), array('id'=>1), array('%s'));
+   }
+  
+ }
+}
+?>
+</form>
+</br>
+</div>
+
+
+
+<div style="width:45%;padding:0 10pt 0 0;float:left;text-align:center; ">
+<h1> pH </h1>
+</br>
+<form action="" method="Post" >
+<input type="number" id="PH" min="5" max="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="PH" size="10" placeholder="pH" step=".1"/> 
+<button type="submit" id="change2" name="change2"  value="" style="cursor:pointer; background-color:white; border:none"><img src="https://dabuttonfactory.com/button.png?t=INSERIR&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=25&bgt=unicolored&bgc=46c90f&be=1&bs=1&bc=569"></button>
+<?php global $wpdb; $myresult = $wpdb->get_row("SELECT * FROM `INPUT`ORDER BY id DESC LIMIT 1", ARRAY_N);if ($myresult){echo "$myresult[2]";}else {echo "Insira uma planta";}?>
+</form>
+</br>
+</div>
+
+
+<div style="width:90%;padding:0 10pt 0 0;float:left;text-align:center; ">
+<h1> Lâmpada </h1>
+</br>
+<form action="" method="Post" >
+<button type="submit" id="change3" name="change3"  style=" background-color:  #4CB62C; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;"><?php  global $wpdb; $ready3 = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_N); if($ready3[2]==1){echo "Ligar";}else {echo "Desligar";}?>	</button>
+<?php
+global $wpdb;
+$ready4 = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_N);
+if(isset($_POST['change3']))
+{
+
+ if($ready4[2]==1)
+ {
+  $wpdb->update('OUTPUT', array('LAMPADA' =>"0"), array('id'=>1), array('%s'));
+  $wpdb->update('OUTPUT', array('MODO_AUTOMATICO' =>"0"), array('id'=>1), array('%s'));
+ }
+ else
+ {
+  $wpdb->update('OUTPUT', array('LAMPADA' =>"1"), array('id'=>1), array('%s'));
+  $wpdb->update('OUTPUT', array('MODO_AUTOMATICO' =>"0"), array('id'=>1), array('%s'));
+ }
+  
+ 
+}
+?>
+</form>
+<form action="" method="Post" >
+<button type="submit" id="automatic" name="automatic" <?php  global $wpdb; $automatic = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_N); if($automatic[7]==1){echo  "disabled" ;} else{echo 'style=" background-color:  #4CB62C; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;"';}?>> Modo Automático </button>
+<?php
+global $wpdb;
+$ready5 = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_N);
+if(isset($_POST['automatic']))
+{
+echo "<meta http-equiv='refresh' content='0'>";
+$wpdb->update('OUTPUT', array('MODO_AUTOMATICO' =>"1"), array('id'=>1), array('%s'));
+  
+ 
+}
+?>	
+</form>
+</br>
+</br>
+</br>
+</br>
+</div>
+

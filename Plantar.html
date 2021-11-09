@@ -1,0 +1,140 @@
+<style>
+h1 {font-size:30px;color:#00cc00;text-align:center;font-weight:bold;}
+h2 {font-size:20px;color:#00cc00;text-align:center}
+h3 {font-size:18px;color:#000000;text-align:center;font-weight:bold;}
+p1 {color:black;}
+p2 {font-size:30px;color:#000000;text-align:center;}
+.SEED > div {text-align:center;}
+</style>
+<body>
+<h1> Semente a Plantar </h1>
+</br>
+</br>
+
+<div style="width:32%;padding:0 10pt 0 0;float:left;text-align:center; ">
+<form method="Post">
+<button type="submit" id="alface" name="alface"  value="" style="cursor:pointer; background-color:white; border:none"><img src="https://image.ibb.co/jjYWz7/foto1.png"></button>
+<?php
+global $wpdb;
+if(isset($_POST['alface']))
+{
+$ready = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_A);
+if($ready)
+echo "Estufa em utilização";
+else{
+$result = $wpdb->insert('OUTPUT', array('id'=>'1','PLANTA'=>'alface', 'LAMPADA'=>'0', 'EC'=>'1.5', 'PH'=>'5.5', 'DIAS_CRESCIMENTO'=>'30' , 'MODO_AUTOMATICO'=>'1'));
+echo 'Planta Inserida';
+$result = $wpdb->insert('LEVEL', array('id'=>'1','EC1'=>'100', 'EC2'=>'100', 'pH'=>'100'));
+}
+}
+?>
+</form>
+</br>
+<p2> Alface </p>
+</div>
+
+
+
+
+
+
+
+<div style="width:32%;padding:0 10pt 0 0;float:left;text-align:center;">
+ <form method="Post">
+<button type="submit" id="mangericao" name="mangericao"  value="" style="cursor:pointer; background-color:white; border:none"><img src="https://image.ibb.co/hfLpmn/foto2.png"></button>
+<?php
+global $wpdb;
+if(isset($_POST['mangericao']))
+{
+$ready = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_A);
+if($ready)
+echo "Estufa em utilização";
+else{
+$result = $wpdb->insert('OUTPUT', array('id'=>'1','PLANTA'=>'mangericao', 'LAMPADA'=>'0', 'EC'=>'2', 'PH'=>'5.5', 'DIAS_CRESCIMENTO'=>'70', 'MODO_AUTOMATICO'=>'1'));
+echo 'Planta Inserida';
+$result = $wpdb->insert('LEVEL', array('id'=>'1','EC1'=>'100', 'EC2'=>'100', 'pH'=>'100'));
+}
+}
+?>
+</form>
+</br>
+<p2> Mangericão </p>
+</div>
+
+
+
+
+
+
+
+<div style="width:32%;padding:0 10pt 0 0;float:left;text-align:center;">
+<form method="Post">
+<button type="submit" id="espinafre" name="espinafre"  value="" style="cursor:pointer; background-color:white; border:none"><img src="https://image.ibb.co/hieh6n/foto3.png"></button>
+<?php
+global $wpdb;
+if(isset($_POST['espinafre']))
+{
+$ready = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_A);
+if($ready)
+echo "Estufa em utilização";
+else{
+$result = $wpdb->insert('OUTPUT', array('id'=>'1','PLANTA'=>'Espinafre', 'LAMPADA'=>'0', 'EC'=>'1.4', 'PH'=>'5.5', 'DIAS_CRESCIMENTO'=>'40', 'MODO_AUTOMATICO'=>'1'));
+echo 'Planta Inserida';
+$result = $wpdb->insert('LEVEL', array('id'=>'1','EC1'=>'100', 'EC2'=>'100', 'pH'=>'100'));
+}
+}
+?>
+</form>
+</br>
+<p2> Espinafre </p>
+</div>
+
+
+<div style="width:100%;padding:0 10pt 0 0;float:left;text-align:center;">
+</br>
+</br>
+<h2>INSERIR NOVA SEMENTE</h2>
+</br>
+<form action="" method="Post" >
+<input type="text" name="SEED" size="30" placeholder="Nome da Semente" />   <input type="number" min="0" max="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="EC" size="10" placeholder="EC (0-3)" step=".1"/>    <input type="number" min="4" max="8" name="PH" size="10" placeholder="pH (4-8)" step=".1"/>   <input type="number" min="0" max="366" name="TIMEGROW" style="width: 200px" placeholder="Dias de Crescimento" />
+<button type="submit" id="new" name="new"  value="" style="cursor:pointer; background-color:white; border:none"><img src="https://dabuttonfactory.com/button.png?t=INSERIR&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=25&bgt=unicolored&bgc=46c90f&be=1&bs=1&bc=569"></button>
+<?php
+global $wpdb;
+if(isset($_POST['new']))
+{
+$ready = $wpdb->get_row( "SELECT * FROM `OUTPUT` WHERE id=1", ARRAY_A);
+if($ready)
+echo "Estufa em utilização";
+
+else{
+$SEED= $_POST["SEED"];
+$EC= $_POST["EC"];
+$PH= $_POST["PH"];
+$TIMEGROW= $_POST["TIMEGROW"];
+$wpdb->insert('CULTURES', array('TYPE'=>$SEED, 'EC'=>$EC, 'DESCRIPTION'=>' ', 'PH'=>$PH, 'TIME'=>$TIMEGROW));
+$result2 = $wpdb->insert_id; 
+echo $result2;
+$result2 = $wpdb->insert('OUTPUT', array('id'=>'1','PLANTA'=>$SEED, 'LAMPADA'=>'0', 'EC'=>$EC, 'PH'=>$PH, 'DIAS_CRESCIMENTO'=>$TIMEGROW));
+
+$result = $wpdb->insert('LEVEL', array('id'=>'1','EC1'=>'100', 'EC2'=>'100', 'pH'=>'100'));
+}
+}
+?>
+</form>
+</br>
+</div>
+</body>
+
+
+<style>
+h1 {font-size:30px;color:#00cc00;text-align:center;font-weight:bold;}
+h2 {font-size:20px;color:#00cc00;text-align:center}
+h3 {font-size:18px;color:#000000;text-align:center;font-weight:bold;}
+p1 {color:black;}
+p2 {font-size:30px;color:#000000;text-align:center;}
+.SEED > div {text-align:center;}
+</style>
+
+
+<body>
+ 

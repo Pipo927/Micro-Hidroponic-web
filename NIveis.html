@@ -1,0 +1,63 @@
+<style>
+p1 {font-size:30px;color:green;text-align:center}
+p2 {font-size:30px;color:red;text-align:center}
+p3 {font-size:30px;color:blue;text-align:center;}
+
+</style>
+</head>
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+<div class="w3-container">
+
+
+
+
+<div class="w3-light-grey">
+<p1>Nível de EC1</p1>
+
+  <div class="w3-container w3-green w3-center" style='width:<?php
+ global $wpdb;
+$myresult = $wpdb->get_row("SELECT * FROM `LEVEL`ORDER BY id DESC LIMIT 1", ARRAY_N);
+echo  $myresult[1]."%";
+?>'><?php
+ global $wpdb;
+$myresult = $wpdb->get_row("SELECT * FROM `LEVEL`ORDER BY id DESC LIMIT 1", ARRAY_N);
+echo  $myresult[1]."%";
+?></div>
+</div><br>
+
+<div class="w3-light-grey">
+<p2>Nível de EC2</p2>
+
+  <div class="w3-container w3-red w3-center" style='width:<?php
+ global $wpdb;
+$myresult = $wpdb->get_row("SELECT * FROM `LEVEL`ORDER BY id DESC LIMIT 1", ARRAY_N);
+echo  $myresult[2]."%";
+?>'><?php
+ global $wpdb;
+$myresult = $wpdb->get_row("SELECT * FROM `LEVEL`ORDER BY id DESC LIMIT 1", ARRAY_N);
+echo  $myresult[2]."%";
+?></div>
+</div><br>
+
+<div class="w3-light-grey">
+<p3>Nível de pH</p3>
+
+  <div class="w3-container w3-blue" style='width:<?php
+ global $wpdb;
+$myresult = $wpdb->get_row("SELECT * FROM `LEVEL`ORDER BY id DESC LIMIT 1", ARRAY_N);
+echo  $myresult[3]."%";
+?>'><?php
+ global $wpdb;
+$myresult = $wpdb->get_row("SELECT * FROM `LEVEL`ORDER BY id DESC LIMIT 1", ARRAY_N);
+echo  $myresult[3]."%";
+?></div>
+</div><br>
+
+</div>
+</body>
+</html>
