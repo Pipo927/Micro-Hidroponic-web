@@ -53,7 +53,7 @@ Manager of the all system. Interaction with DB and Arduino.
 
 #### Third RPI CONFIG:
 Here you can find a .img of the RPI fully configurated.
-[SDCARD](Filipe.img)
+[SDCARD](https://mega.nz/file/ncNiWZaK#5-VcncEUgTIvyc-NAMCyw2_DDkAyKMtbaAidmuYLQ7M)
 
 #### Fourth WEB development:
 The main template was created with WordPress and the content of each page was:
